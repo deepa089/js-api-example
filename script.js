@@ -26,7 +26,8 @@ const categoryBtnActive= (id) =>{
     buttonName.classList.add('bg-red-600', 'text-white');
     loadAllData(id);
 }
-const loadAllData = async (id) => {
+let gData = [];
+const loadAllData = async (id, isSorted = false) => {
     
     // const res = await fetch('https://openapi.programming-hero.com/api/videos/categories');
     const res = await fetch('https://openapi.programming-hero.com/api/videos/category/' + id);
@@ -34,13 +35,18 @@ const loadAllData = async (id) => {
     // console.log("data" + jsonData.data);
 
     const data = await jsonData.data ;
-    // if(data != ""){
-        // console.log("data2" + data);
-        displayData(data);
-    // } else {
-        // console.log("data1" + data);
-        // showNoDataFound("true");
-    // }
+    data.forEach(element=>{
+        let view =  element.others.views.replace('K','');
+        element.others.views = parseInt(view)
+    });
+    if(isSorted){
+        console.log("i m here");
+        gData =  data.sort((a,b) =>a.others.views - b.others.views); 
+    } else {
+        gData = data;
+    }
+    
+        displayData(gData);
 }
 
 const displayData = (data)=>{
@@ -68,7 +74,7 @@ const displayData = (data)=>{
                 ${(item.authors[0].verified == true || item.authors[0].verified == "true") ? verifiedBox :''}
               </div>
                 <div class="mt-2 viewBox">
-                    <p class=" ml-10 text-sm px-3 text-slate-400 w-auto flex">${item.others.views} View
+                    <p class=" ml-10 text-sm px-3 text-slate-400 w-auto flex">${item.others.views}K View
                     </p>
                 </div>`
 
@@ -97,3 +103,17 @@ const showNoDataFound =(isNoData) =>{
 }
 document.getElementById("NoDataDiv").style.display = "none";
 // loadAllData();
+
+const sortedByView = () => {
+    const allBtn = document.querySelectorAll(".categoryBtn");
+    allBtn.forEach((element) => {  
+        element.classList.remove('bg-red-600', 'text-white');
+        element.classList.add('text-slate-500','btn-ghost');  
+    }); 
+    const buttonName = document.getElementById('sortedByViewId');
+    buttonName.classList.remove('text-slate-500','btn-ghost');
+    buttonName.classList.add('bg-red-600', 'text-white');
+    
+    const alldata =  loadAllData('1000', true);
+    // const data =  new Map([...alldata()].sort());
+}

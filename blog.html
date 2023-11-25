@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH Tube</title>
+
+    <!-- google font lato -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- font awesome -->
+    <script src="https://kit.fontawesome.com/d7b7563d24.js" crossorigin="anonymous"></script>
+
+    <!-- tailwind and daisyUI -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.5.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .font-inter {
+            font-family: 'Inter', sans-serif;
+        }
+        .active {
+            background-color: #FF1F3D;
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+        }
+        .inactive {
+            background-color: #25252526;
+            color: #252525b3;
+            font-weight: 500;
+            font-size: 16px;
+        }
+    </style>
+
+    <!-- tailwind custom color -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'color-black': '#171717',
+                        'color-light-black': '#252525',
+                        'color-gray2370': '#171717b3', //rgba(23, 23, 23, 0.70);
+                        'color-gray3720': '#25252533', //rgba(37, 37, 37, 0.20);
+                        'color-red': '#FF1F3D',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter text-color-black">
+    <header class="container mx-auto px-2 lg:px-0">
+        <section class="flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 lg:h-24 mt-5 mb-3 lg:mb-0">
+            <div>
+                <img src="../image/Logo.png" alt="" class="h-8 md:h-6 lg:h-8">
+            </div>
+            <div>
+                <button onclick="location.href = '../index.html'" class="py-2 px-5 bg-color-red font-medium lg:text-lg rounded text-white hover:bg-color-black">Category</button>
+            </div>
+        </section>
+        <hr>
+    </header>
+    <main class="container mx-auto">
+        <section>
+            <div class="join join-vertical w-full">
+                <div class="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-4" checked="checked" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        Scope of var, let and const in JavaScript
+                    </div>
+                    <div class="collapse-content"> 
+                        <h2 class="text-2xl">Var</h2>
+                        <p>Before the advent of ES6, <code>var</code> declarations ruled. 
+                            There are issues associated with variables declared with <code>var</code>, though. That is why it was necessary for new ways to declare variables to emerge. First, let's get to understand <code>var</code> more before we discuss those issues.</p>
+                        
+                        <h3 class="text-xl mt-3">Scope of var</h3>
+                        <p><b>Scope</b> essentially means where these variables are available for use. <code>var</code> declarations are globally scoped or function/locally scoped. </p>
+                        <p>The scope is global when a <code>var</code> variable is declared outside a function. This means that any variable that is declared with <code>var</code> outside a function block is available for use in the whole window. </p>
+                        <p><code>var</code> is function scoped when it is declared within a function. This means that it is available and can be accessed only within that function.</p>
+                        <p>To understand further, look at the example below.</p>
+                        <p class="language-javascript" tabindex="0"><code class="language-javascript">    <span class="token keyword">var</span> greeter <span class="token operator">=</span> <span class="token string">"hey hi"</span><span class="token punctuation">;</span>
+    
+                            <span class="token keyword">function</span> <span class="token function">newFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token keyword">var</span> hello <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+                        </code></p>
+                        <p>Here, <code>greeter</code> is globally scoped because it exists outside a function while <code>hello</code> is function scoped. So we cannot access the variable <code>hello</code> outside of a function. So if we do this:</p>
+                        <p class="language-javascript" tabindex="0"><code class="language-javascript">    <span class="token keyword">var</span> tester <span class="token operator">=</span> <span class="token string">"hey hi"</span><span class="token punctuation">;</span>
+    
+                            <span class="token keyword">function</span> <span class="token function">newFunction</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                <span class="token keyword">var</span> hello <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+                            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error: hello is not defined</span>
+                        </code></p>
+                        <p>We'll get an error which is as a result of <code>hello</code> not being available outside the function.</p>
+
+                        <h2 class="text-2xl mt-7">Let</h2>
+                        <p><code>let</code> is now preferred for variable declaration. It's no surprise as it comes as an improvement to <code>var</code> declarations. It also solves the problem with <code>var</code> that we just covered. Let's consider why this is so.</p>
+                        <h3 class="text-xl mt-3">let is block scoped</h3>
+                        <p>A block is a chunk of code bounded by {}. A block lives in curly braces. Anything within curly braces is a block. </p>
+                        <p>So a variable declared in a block with <code>let</code> &nbsp;is only available for use within that block. Let me explain this with an example:</p>
+                        <p class="language-javascript" tabindex="0"><code class="language-javascript">   <span class="token keyword">let</span> greeting <span class="token operator">=</span> <span class="token string">"say Hi"</span><span class="token punctuation">;</span>
+                            <span class="token keyword">let</span> times <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+                         
+                            <span class="token keyword">if</span> <span class="token punctuation">(</span>times <span class="token operator">&gt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                 <span class="token keyword">let</span> hello <span class="token operator">=</span> <span class="token string">"say Hello instead"</span><span class="token punctuation">;</span>
+                                 console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// "say Hello instead"</span>
+                             <span class="token punctuation">}</span>
+                            console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>hello<span class="token punctuation">)</span> <span class="token comment">// hello is not defined</span>
+                         </code></p>
+                         <p>We see that using <code>hello</code> outside its block (the curly braces where it was defined) returns an error. This is because <code>let</code> variables are block scoped .</p>
+
+
+                         <h2 class="text-2xl mt-7">Const</h2>
+                         <p>Variables declared with the <code>const</code> maintain constant values. <code>const</code> declarations share some similarities with <code>let</code> declarations.</p>
+                         <h3 class="text-xl mt-3">const declarations are block scoped</h3>
+                         <p>Like <code>let</code> declarations, <code>const</code> declarations can only be accessed within the block they were declared.</p>
+
+                    </div>
+                </div>
+                <div class="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-4" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        Use case of null and undefined
+                    </div>
+                    <div class="collapse-content"> 
+                        <div class="text">
+                            <p>There are several differences between null and undefined, 
+                                which are sometimes understood as the same.
+                            </p>
+                            <p><strong>Definition:</strong></p>
+                            <p><strong>Null:</strong> It is the intentional absence of the value. It is one of the primitive values of JavaScript.</p>
+                            <p><strong>Undefined:</strong> It means the value does not exist in the compiler. It is the global object.</p>
+                            <p><strong>Type:</strong></p>
+                            <p><strong>Null:</strong> Object&nbsp;</p>
+                            <p><strong>Undefined:</strong> undefined</p>
+                            <p>You can see refer to <a href="https://www.geeksforgeeks.org/javascript-vs-comparision-operator/">“==” vs “===”</a> article.</p>
+                            <p> null == undefined // true
+                            null === undefined // false</p>
+                            <p>It means <i>null</i> is equal to <i>undefined</i> but not identical.</p>
+                            <p>When we define a variable to <i>undefined</i> then we are trying to convey that the variable does not exist . When we define a variable to <i>null</i> then we are trying to convey that the variable is empty.</p>
+                            <p><strong>Differentiating using isNaN():</strong> You can refer to <a href="https://www.geeksforgeeks.org/number-isnan-javascript/">NaN </a>article for better understanding.</p>
+                            <p>isNaN(2 +  null)      // false
+                           isNaN(2 + undefined) // true</p>
+                           <p><strong>Examples:</strong></p>
+                           <p><strong>Null:</strong></p>
+                           <p>null ? console.log("true") : console.log("false") // false</p>
+                           <p><i>Null</i> is also referred as <i>false</i>.</p>
+                           <p><strong>Undefined:</strong></p>
+                           <p>When variable is not assigned a value</p>
+                           <p>var temp;
+                           if(temp === <strong>undefined</strong>)
+                           console.log("true");
+                           else
+                           console.log("false");</p>
+                           <p><strong>Output:</strong></p>
+                           <p> true</p>
+                           <p>Accessing values which does not exist</p>
+                           <p>var temp=['a','b','c'];
+                           if(temp[3] === undefined)
+                           console.log("true");
+                           else
+                           console.log("false");</p>
+                           <p><strong>Output:</strong>
+                        </p><p>true</p>
+                        <p><strong>Let us see the differences in a tabular form -:</strong></p>
+                        <figure class="table"><table><tbody><tr><td>&nbsp;</td><td><strong>Undefined</strong></td><td><strong>NULL</strong></td></tr><tr><td><strong>1.</strong></td><td>Undefined means a variable has been declared but has yet not been assigned a value.</td><td>Null is an assignment value. It can be assigned to a variable as a representation of no value.&nbsp;</td></tr><tr><td><strong>2.</strong></td><td>It is an ECMAScript1 (ES1) feature.</td><td>It is a Primitive value in Javascript</td></tr><tr><td><strong>3.</strong></td><td><p>Its supported browsers are -:</p><p>Chrome , Microsoft Edge , Internet Explorer , Firefox , Safari , Opera Mini</p></td><td><p>Its syntax is -:</p><p><strong>null</strong></p></td></tr><tr><td><strong>4.</strong></td><td>It is a global property.</td><td><p>Its supported browsers are -:</p><p>Chrome , Microsoft Edge , Internet Explorer , Firefox , Safari , Opera Mini</p></td></tr></tbody></table></figure></div>
+                        
+                    </div>
+                </div>
+                <div class="collapse collapse-arrow join-item border border-base-300">
+                    <input type="radio" name="my-accordion-4" /> 
+                    <div class="collapse-title text-xl font-medium">
+                        What do you mean by REST API?
+                    </div>
+                    <div class="collapse-content"> 
+                        <p class="mb-3">An API, or application programming interface, is a set of rules that define how applications or devices can connect to and communicate with each other. A REST API is an API that conforms to the design principles of the REST, or representational state transfer architectural style. For this reason, REST APIs are sometimes referred to RESTful APIs.</p>
+                        <p>First defined in 2000 by computer scientist Dr. Roy Fielding in his doctoral dissertation, REST provides a relatively high level of flexibility and freedom for developers. This flexibility is just one reason why REST APIs have emerged as a common method for connecting components and applications in a microservices architecture.</p>
+                    </div>
+                </div>
+              </div>
+        </section>
+    </main>
+
+    <div class="w-full h-40"></div>
+    <!-- <script src="blog.js"></script> -->
+</body>
+</html>

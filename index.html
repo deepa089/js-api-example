@@ -12,8 +12,8 @@
       <!-- <nav class="m-7 h-8">            -->
         <div class="grid grid-cols-3">
             <div><img class="h-8" src="./images/Logo.png"/></div>
-            <div class="flex justify-center"><button class="btn btn-sm btn-active btn-ghost rounded">Sort By View</button></div>
-            <div class="flex justify-end"><button class="btn btn-sm btn-error rounded" onclick='showNoDataFound("true")'>Blog</button></div>                
+            <div class="flex justify-center"><button id="sortedByViewId" class="categoryBtn btn btn text-slate-500-sm btn-active btn-ghost rounded hover:bg-red-500 hover:text-white" onclick="sortedByView()">Sort By View</button></div>
+            <div class="flex justify-end"><button class="btn btn-sm btn-error rounded" onclick="location.href='./blog.html'">Blog</button></div>                
           </div>
           <hr class="my-7"></hr>
           <div class="flex justify-center">
